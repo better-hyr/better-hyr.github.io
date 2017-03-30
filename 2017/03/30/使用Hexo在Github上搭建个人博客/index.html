@@ -97,14 +97,18 @@ Github申请账号Github 官网：https://github.com/ 注册账号【略】
 <meta property="og:description" content="准备工作Node.js官网下载地址：https://nodejs.org/en/ 傻瓜式安装过程【略】
 Github申请账号Github 官网：https://github.com/ 注册账号【略】
 新建博客仓库New repository –&amp;gt; 仓库名的格式必须为：用户名.github.io –&amp;gt; 进入仓库后，点击 settings –&amp;gt; 在Options 菜单栏中找到 Git">
+<meta property="og:image" content="http://i1.piimg.com/567571/1fae52a7e79d9658.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/467e8ea2f304eec1.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/ced12bc663fcd444.png">
+<meta property="og:image" content="http://i2.muimg.com/567571/fb3a2a7e8a2300d8.png">
 <meta property="og:image" content="http://i4.buimg.com/567571/701263744bb60634.png">
-<meta property="og:updated_time" content="2017-03-30T10:33:58.313Z">
+<meta property="og:updated_time" content="2017-03-30T10:43:31.714Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Hexo在Github上搭建个人博客">
 <meta name="twitter:description" content="准备工作Node.js官网下载地址：https://nodejs.org/en/ 傻瓜式安装过程【略】
 Github申请账号Github 官网：https://github.com/ 注册账号【略】
 新建博客仓库New repository –&amp;gt; 仓库名的格式必须为：用户名.github.io –&amp;gt; 进入仓库后，点击 settings –&amp;gt; 在Options 菜单栏中找到 Git">
-<meta name="twitter:image" content="http://i4.buimg.com/567571/701263744bb60634.png">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/1fae52a7e79d9658.png">
 
 
 
@@ -354,20 +358,24 @@ Github申请账号Github 官网：https://github.com/ 注册账号【略】
         <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h2><p>官网下载地址：<a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a> 傻瓜式安装过程【略】</p>
 <h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><h3 id="申请账号"><a href="#申请账号" class="headerlink" title="申请账号"></a>申请账号</h3><p>Github 官网：<a href="https://github.com/" target="_blank" rel="external">https://github.com/</a> 注册账号【略】</p>
 <h3 id="新建博客仓库"><a href="#新建博客仓库" class="headerlink" title="新建博客仓库"></a>新建博客仓库</h3><p>New repository –&gt; 仓库名的格式必须为：用户名.github.io –&gt; 进入仓库后，点击 settings –&gt; 在Options 菜单栏中找到 GitHub Pages 选项</p>
+<p><img src="http://i1.piimg.com/567571/1fae52a7e79d9658.png" alt="GitHub Pages-1"></p>
 <p>部分教程中，这个选项中有 Launch automatic page generator 按钮，此时直接点击就可以了。</p>
 <p>但在我的 Github Page 页面中并没有这个选项，只有 Choose a theme 按钮，点进去会让你选择主题，同样也可以生成 Github Page，但此时是基于 Jekyll 框架的。</p>
+<p><img src="http://i1.piimg.com/567571/467e8ea2f304eec1.png" alt="GitHub Pages-2"></p>
 <h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><h3 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h3><p>官网下载地址：<a href="https://git-scm.com/download/" target="_blank" rel="external">https://git-scm.com/download/</a></p>
 <h3 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h3><p>右击计算机 –&gt; 属性 –&gt; 高级系统设置 –&gt; 环境变量</p>
 <p>在系统变量中找到 path 变量，加入 Git 的两个路径：</p>
 <p>D:\Program Files\Git\bin</p>
 <p>D:\Program Files\Git\libexec\git-core</p>
 <p>注意不同环境变量中不同路径要加分号（英文半角），libexec 文件夹不一定就在 Git 目录下，Git2.0 以上版本的在 Git 目录下的 mingw32 文件夹中。</p>
+<p><img src="http://i1.piimg.com/567571/ced12bc663fcd444.png" alt="Git环境变量"></p>
 <h3 id="关联-Github-账号"><a href="#关联-Github-账号" class="headerlink" title="关联 Github 账号"></a>关联 Github 账号</h3><p>随处右击进入 GitBash，输入命令行：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name &quot;用户名&quot;</div><div class="line">git config --global user.email &quot;邮箱地址&quot;</div></pre></td></tr></table></figure>
 <h3 id="SSH-Keys"><a href="#SSH-Keys" class="headerlink" title="SSH Keys"></a>SSH Keys</h3><p>接着上一步，输入命令行：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C &quot;邮箱地址&quot;</div></pre></td></tr></table></figure>
 <p>连续回车，生成两个文件 id_rsa 和 id_rsa.pub，打开 id_rsa.pub 复制所有内容。</p>
 <p>登录网页版 Github，点击头像 –&gt; Settings –&gt; SSH and GPG keys –&gt; 点击 New SSH key 按钮 –&gt; Title随意，将刚刚复制的内容粘贴到 Key 中 –&gt; Add SSH Key 结束。</p>
+<p><img src="http://i2.muimg.com/567571/fb3a2a7e8a2300d8.png" alt="SSH Keys配置"></p>
 <h1 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h1><h3 id=""><a href="#" class="headerlink" title=" "></a> </h3><p>进入 Node.js 的安装路径，新建一个文件夹（我这里取名为 blog），进入 blog 文件夹，打开命令行窗口（按住 Shift 键，鼠标右键，选择在此处打开命令窗口），依次输入命令：</p>
 <p>安装 Hexo：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure>
