@@ -359,8 +359,16 @@
 
       
         
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文为 <a href="https://www.freecodecamp.cn/home">FreeCodeCamp</a> 中前端的十六道基础算法题。</p>
-<hr>
+          
+          前言本文为 FreeCodeCamp 中前端的十六道基础算法题。
+
+Reverse a String 翻转字符串★ 具体步骤
+字符串 –&gt; 数组：str.split(“连接符”)
+
+翻转数组：arr.reverse()，本方法直接改变原数组
+
+数组 –&gt; 字符串：arr.join(“连接
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/31/FCC Basic Algorithm Scripting 基础算法集/#more" rel="contents">
@@ -519,63 +527,17 @@
       
         
           
-            <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h2><p>官网下载地址：<a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a> 傻瓜式安装过程【略】</p>
-<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><h3 id="申请账号"><a href="#申请账号" class="headerlink" title="申请账号"></a>申请账号</h3><p>Github 官网：<a href="https://github.com/" target="_blank" rel="external">https://github.com/</a> 注册账号【略】</p>
-<h3 id="新建博客仓库"><a href="#新建博客仓库" class="headerlink" title="新建博客仓库"></a>新建博客仓库</h3><p>New repository –&gt; 仓库名的格式必须为：用户名.github.io –&gt; 进入仓库后，点击 settings –&gt; 在Options 菜单栏中找到 GitHub Pages 选项</p>
-<p><img src="http://i1.piimg.com/567571/1fae52a7e79d9658.png" alt="GitHub Pages-1"></p>
-<p>部分教程中，这个选项中有 Launch automatic page generator 按钮，此时直接点击就可以了。</p>
-<p>但在我的 Github Page 页面中并没有这个选项，只有 Choose a theme 按钮，点进去会让你选择主题，同样也可以生成 Github Page，但此时是基于 Jekyll 框架的。</p>
-<p><img src="http://i1.piimg.com/567571/467e8ea2f304eec1.png" alt="GitHub Pages-2"></p>
-<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><h3 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h3><p>官网下载地址：<a href="https://git-scm.com/download/" target="_blank" rel="external">https://git-scm.com/download/</a></p>
-<h3 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h3><p>右击计算机 –&gt; 属性 –&gt; 高级系统设置 –&gt; 环境变量</p>
-<p>在系统变量中找到 path 变量，加入 Git 的两个路径：</p>
-<p>D:\Program Files\Git\bin</p>
-<p>D:\Program Files\Git\libexec\git-core</p>
-<p>注意不同环境变量中不同路径要加分号（英文半角），libexec 文件夹不一定就在 Git 目录下，Git2.0 以上版本的在 Git 目录下的 mingw32 文件夹中。</p>
-<p><img src="http://i1.piimg.com/567571/ced12bc663fcd444.png" alt="Git环境变量"></p>
-<h3 id="关联-Github-账号"><a href="#关联-Github-账号" class="headerlink" title="关联 Github 账号"></a>关联 Github 账号</h3><p>随处右击进入 GitBash，输入命令行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name &quot;用户名&quot;</div><div class="line">git config --global user.email &quot;邮箱地址&quot;</div></pre></td></tr></table></figure>
-<h3 id="SSH-Keys"><a href="#SSH-Keys" class="headerlink" title="SSH Keys"></a>SSH Keys</h3><p>接着上一步，输入命令行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C &quot;邮箱地址&quot;</div></pre></td></tr></table></figure>
-<p>连续回车，生成两个文件 id_rsa 和 id_rsa.pub，打开 id_rsa.pub 复制所有内容。</p>
-<p>登录网页版 Github，点击头像 –&gt; Settings –&gt; SSH and GPG keys –&gt; 点击 New SSH key 按钮 –&gt; Title随意，将刚刚复制的内容粘贴到 Key 中 –&gt; Add SSH Key 结束。</p>
-<p><img src="http://i2.muimg.com/567571/fb3a2a7e8a2300d8.png" alt="SSH Keys配置"></p>
-<h1 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h1><p>进入 Node.js 的安装路径，新建一个文件夹（我这里取名为 blog），进入 blog 文件夹，打开命令行窗口（按住 Shift 键，鼠标右键，选择在此处打开命令窗口），依次输入命令：</p>
-<p>安装 Hexo：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure>
-<p>初始化：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo init</div></pre></td></tr></table></figure>
-<p>生成静态界面：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo g</div></pre></td></tr></table></figure>
-<p>启动本地服务，进行文章预览调试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s</div></pre></td></tr></table></figure>
-<p>此时在浏览器中输入 <a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a> 可以看到这样的页面：</p>
-<p><img src="http://i4.buimg.com/567571/701263744bb60634.png" alt="localhost页面"></p>
-<p>打开 D:\Program Files\nodejs\blog\source_posts 就可以看到一个 hello-world.md 的文件，这就是网站上显示的文章，之后写的博客都是以 md 格式存在这个文件夹中。</p>
-<h1 id="配置-Github"><a href="#配置-Github" class="headerlink" title="配置 Github"></a>配置 Github</h1><p>打开 nodejs\blog 文件夹下的 _config.yml 文件，拉到最下面，修改为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/用户名/用户名.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
-<p>然后执行命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
-<p>继续执行配置命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo d</div></pre></td></tr></table></figure>
-<p>完成上述步骤之后，在浏览器中输入 <a href="http://用户名.github.io" target="_blank" rel="external">http://用户名.github.io</a> 就可以了。</p>
-<h1 id="部署步骤"><a href="#部署步骤" class="headerlink" title="部署步骤"></a>部署步骤</h1><p>每次部署的步骤，可以按以下三步进行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line"></div><div class="line">hexo generate  // hexo g</div><div class="line"></div><div class="line">hexo deploy  // hexo d</div></pre></td></tr></table></figure>
-<h1 id="更换-Hexo-主题"><a href="#更换-Hexo-主题" class="headerlink" title="更换 Hexo 主题"></a>更换 Hexo 主题</h1><p>我使用的主题是：<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">https://github.com/iissnan/hexo-theme-next</a></p>
-<p>打开主题所在文件夹 nodejs\blog\themes，打开 GitBsh 或者命令行，输入下载主题命令:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/iissnan/hexo-theme-next.git</div></pre></td></tr></table></figure>
-<p>再执行命令（没有执行如下命令会报错）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install hexo-renderer-jade --save</div><div class="line">npm install hexo-renderer-sass --save</div></pre></td></tr></table></figure>
-<p>下载完成后，会看到 themes 下多了一个文件夹，修改文件名为 next，修改 nodejs\blog 文件夹下的 _config.yml 文件，将 theme 值修改为：next，注意 theme 冒号后的空格要保留。</p>
-<p>再次执行命令:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g</div><div class="line">hexo d</div></pre></td></tr></table></figure>
-<p>就可以看到主题更换成功了。</p>
-<h1 id="报错信息处理"><a href="#报错信息处理" class="headerlink" title="报错信息处理"></a>报错信息处理</h1><h2 id="报错-spawn-git-ENOENT"><a href="#报错-spawn-git-ENOENT" class="headerlink" title="报错 spawn git ENOENT"></a>报错 spawn git ENOENT</h2><p>在配置 Github 中最后输入 hexo d 后报错 spawn git ENOENT</p>
-<p><strong>解决方法：</strong>添加 Git 环境变量，还不行的话将 Git 版本退回到 2.0 以下。</p>
-<h2 id="报错-not-a-git-repository"><a href="#报错-not-a-git-repository" class="headerlink" title="报错 not a git repository"></a>报错 not a git repository</h2><p>解决了上一个报错之后，出现 not a git repository 报错信息</p>
-<p><strong>解决方法：</strong>删除 nodejs\blog 文件夹下的 .deploy_git 文件夹并且执行 hexo clean 后，重新 hexo d。</p>
-
-          
+          准备工作Node.js官网下载地址：https://nodejs.org/en/ 傻瓜式安装过程【略】
+Github申请账号Github 官网：https://github.com/ 注册账号【略】
+新建博客仓库New repository –&gt; 仓库名的格式必须为：用户名.github.io
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/30/使用Hexo在Github上搭建个人博客/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
