@@ -370,7 +370,7 @@
 <p>连续回车，生成两个文件 id_rsa 和 id_rsa.pub，打开 id_rsa.pub 复制所有内容。</p>
 <p>登录网页版 Github，点击头像 –&gt; Settings –&gt; SSH and GPG keys –&gt; 点击 New SSH key 按钮 –&gt; Title随意，将刚刚复制的内容粘贴到 Key 中 –&gt; Add SSH Key 结束。</p>
 <p><img src="http://i2.muimg.com/567571/fb3a2a7e8a2300d8.png" alt="SSH Keys配置"></p>
-<h1 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h1><h3 id=""><a href="#" class="headerlink" title=" "></a> </h3><p>进入 Node.js 的安装路径，新建一个文件夹（我这里取名为 blog），进入 blog 文件夹，打开命令行窗口（按住 Shift 键，鼠标右键，选择在此处打开命令窗口），依次输入命令：</p>
+<h1 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h1><p>进入 Node.js 的安装路径，新建一个文件夹（我这里取名为 blog），进入 blog 文件夹，打开命令行窗口（按住 Shift 键，鼠标右键，选择在此处打开命令窗口），依次输入命令：</p>
 <p>安装 Hexo：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure>
 <p>初始化：</p>
@@ -382,16 +382,16 @@
 <p>此时在浏览器中输入 <a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a> 可以看到这样的页面：</p>
 <p><img src="http://i4.buimg.com/567571/701263744bb60634.png" alt="localhost页面"></p>
 <p>打开 D:\Program Files\nodejs\blog\source_posts 就可以看到一个 hello-world.md 的文件，这就是网站上显示的文章，之后写的博客都是以 md 格式存在这个文件夹中。</p>
-<h1 id="配置-Github"><a href="#配置-Github" class="headerlink" title="配置 Github"></a>配置 Github</h1><h3 id="-1"><a href="#-1" class="headerlink" title=" "></a> </h3><p>打开 nodejs\blog 文件夹下的 _config.yml 文件，拉到最下面，修改为：</p>
+<h1 id="配置-Github"><a href="#配置-Github" class="headerlink" title="配置 Github"></a>配置 Github</h1><p>打开 nodejs\blog 文件夹下的 _config.yml 文件，拉到最下面，修改为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/用户名/用户名.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
 <p>然后执行命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
 <p>继续执行配置命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo d</div></pre></td></tr></table></figure>
 <p>完成上述步骤之后，在浏览器中输入 <a href="http://用户名.github.io" target="_blank" rel="external">http://用户名.github.io</a> 就可以了。</p>
-<h1 id="部署步骤"><a href="#部署步骤" class="headerlink" title="部署步骤"></a>部署步骤</h1><h3 id="-2"><a href="#-2" class="headerlink" title=" "></a> </h3><p>每次部署的步骤，可以按以下三步进行：</p>
+<h1 id="部署步骤"><a href="#部署步骤" class="headerlink" title="部署步骤"></a>部署步骤</h1><p>每次部署的步骤，可以按以下三步进行：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line"></div><div class="line">hexo generate  // hexo g</div><div class="line"></div><div class="line">hexo deploy  // hexo d</div></pre></td></tr></table></figure>
-<h1 id="更换-Hexo-主题"><a href="#更换-Hexo-主题" class="headerlink" title="更换 Hexo 主题"></a>更换 Hexo 主题</h1><h3 id="-3"><a href="#-3" class="headerlink" title=" "></a> </h3><p>我使用的主题是：<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">https://github.com/iissnan/hexo-theme-next</a></p>
+<h1 id="更换-Hexo-主题"><a href="#更换-Hexo-主题" class="headerlink" title="更换 Hexo 主题"></a>更换 Hexo 主题</h1><p>我使用的主题是：<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">https://github.com/iissnan/hexo-theme-next</a></p>
 <p>打开主题所在文件夹 nodejs\blog\themes，打开 GitBsh 或者命令行，输入下载主题命令:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/iissnan/hexo-theme-next.git</div></pre></td></tr></table></figure>
 <p>再执行命令（没有执行如下命令会报错）</p>
