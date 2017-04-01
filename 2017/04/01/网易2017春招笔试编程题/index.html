@@ -91,12 +91,13 @@
 输入包括两行：
 第一行为序列长度n(1 ≤ n ≤ 50)。
 第二行为n个数sequencei，以空格分隔。
+
 输入例子：
 
 9
 
 100 100 100 99 99 99 100 100 100
-输出消除重复元素之后的序列，以空格分隔，行末无空格。">
+输出消除重复元素之后的序列，以空格分隔，行末无空格">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网易2017春招笔试编程题">
 <meta property="og:url" content="http://yoursite.com/2017/04/01/网易2017春招笔试编程题/index.html">
@@ -105,25 +106,27 @@
 输入包括两行：
 第一行为序列长度n(1 ≤ n ≤ 50)。
 第二行为n个数sequencei，以空格分隔。
+
 输入例子：
 
 9
 
 100 100 100 99 99 99 100 100 100
-输出消除重复元素之后的序列，以空格分隔，行末无空格。">
-<meta property="og:updated_time" content="2017-04-01T12:20:10.415Z">
+输出消除重复元素之后的序列，以空格分隔，行末无空格">
+<meta property="og:updated_time" content="2017-04-01T12:27:30.655Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网易2017春招笔试编程题">
 <meta name="twitter:description" content="消除重复元素题目描述小易有一个长度为n序列，小易想移除掉里面的重复元素，但是小易想是对于每种元素保留最后出现的那个。小易遇到了困难，希望你来帮助他。 
 输入包括两行：
 第一行为序列长度n(1 ≤ n ≤ 50)。
 第二行为n个数sequencei，以空格分隔。
+
 输入例子：
 
 9
 
 100 100 100 99 99 99 100 100 100
-输出消除重复元素之后的序列，以空格分隔，行末无空格。">
+输出消除重复元素之后的序列，以空格分隔，行末无空格">
 
 
 
@@ -374,6 +377,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
           
 
@@ -394,15 +402,17 @@
 <p>输入包括两行：</p>
 <p>第一行为序列长度n(1 ≤ n ≤ 50)。</p>
 <p>第二行为n个数sequence<a href="1 ≤ sequence[i] ≤ 1000">i</a>，以空格分隔。</p>
-<pre><code>输入例子：
-
-9
+<blockquote>
+<p>输入例子：</p>
+</blockquote>
+<pre><code>9
 
 100 100 100 99 99 99 100 100 100
 </code></pre><p>输出消除重复元素之后的序列，以空格分隔，行末无空格。</p>
-<pre><code>输出例子：
-
-99 100
+<blockquote>
+<p>输出例子：</p>
+</blockquote>
+<pre><code>99 100
 </code></pre><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>输入是一个可能包含有多个重复元素的数组（inputArr）：</p>
 <ol>
 <li><p>用一个数组（noRepeatArr）存储输入数组中独立的元素，就是一个输入数组去重的过程；</p>
@@ -417,13 +427,14 @@
 <h1 id="奇怪的表达式求值"><a href="#奇怪的表达式求值" class="headerlink" title="奇怪的表达式求值"></a>奇怪的表达式求值</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>常规的表达式求值，我们都会根据计算的优先级来计算。比如 <em> / 的优先级就高于 + -。但是小易所生活的世界的表达式规则很简单，从左往右依次计算即可，而且小易所在的世界没有除法，意味着表达式中没有 /，只有+，- 和 </em>。现在给出一个表达式，需要你帮忙计算出小易所在的世界这个表达式的值为多少。</p>
 <p>输入为一行字符串，即一个表达式。其中运算符只有 -，+，*。参与计算的数字只有 0-9。</p>
 <p>输出一个数，即表达式的值。</p>
-<pre><code>输入例子:
-
-3+5*7
-
-输出例子:
-
-56
+<blockquote>
+<p>输入例子:</p>
+</blockquote>
+<pre><code>3+5*7
+</code></pre><blockquote>
+<p>输出例子:</p>
+</blockquote>
+<pre><code>56
 </code></pre><h2 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h2><p>考虑到数字只有0-9，先取出字符串的前三个字符（str.substring），计算出这三个字符的值（eval函数），然后再用一个循环每次取后两个字符加入计算。</p>
 <h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function strangeExpression(inputExpStr) &#123;</div><div class="line">    var result = eval(inputExpStr.substring(0,3));</div><div class="line">    for (var i = 3; i &lt; inputExpStr.length; i+=2) &#123;</div><div class="line">        result = eval(result + inputExpStr.substring(i,i+1));</div><div class="line">    &#125;</div><div class="line">    return result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <hr>
@@ -432,13 +443,14 @@
 <p>需要根据给定的w，x，y，z，求出集合中一共有多少个元素。小易才学习了集合还解决不了这个复杂的问题，需要你来帮助他。 </p>
 <p>输入包括一行：<br>一共4个整数分别是w(1 ≤ w ≤ x)，x(1 ≤ x ≤ 100)，y(1 ≤ y ≤ z)，z(1 ≤ z ≤ 100)，以空格分隔。</p>
 <p>输出描述：输出集合中元素的个数。</p>
-<pre><code>输入例子:
-
-1 10 1 1
-
-输出例子:
-
-10
+<blockquote>
+<p>输入例子:</p>
+</blockquote>
+<pre><code>1 10 1 1
+</code></pre><blockquote>
+<p>输出例子:</p>
+</blockquote>
+<pre><code>10
 </code></pre><h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">function eleNumInSet(w,x,y,z) &#123;</div><div class="line">    var sAll = [];</div><div class="line">    var s = [];</div><div class="line">    for (var i = w; i &lt;= x; i++) &#123;  // p 集合</div><div class="line">        for (var j = y; j &lt;= z; j++) &#123;  // q 集合</div><div class="line">            sAll.push(i/j);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    // 去重</div><div class="line">    for (var k = 0; k &lt; sAll.length; k++) &#123;</div><div class="line">        if (s.indexOf(sAll[k])==-1) &#123;</div><div class="line">            s.push(sAll[k]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return s.length;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
@@ -655,6 +667,26 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
         
       </div>
