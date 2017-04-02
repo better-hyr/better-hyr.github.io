@@ -99,7 +99,7 @@
 事件处理程序： 事件处理程序是响应事件的函数。事件处理程序可以看做是动作的结果，比如文档加载完毕或者点击鼠标之后会发生什么。
 为一个事件添加事件处理程序有四种方式。分别为：HTML、DOM0级、DOM2级、IE。
 事件处理程序HTML事件处理程序最开始学习 JavaScript 的时">
-<meta property="og:updated_time" content="2017-04-02T11:14:35.783Z">
+<meta property="og:updated_time" content="2017-04-02T11:38:32.533Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript事件模型系列（一）事件与事件处理程序">
 <meta name="twitter:description" content="基本定义事件： 事件就是浏览器或者用户执行的某种动作，比如文档加载完毕（load）、鼠标点击（click）等等。 
@@ -416,14 +416,12 @@
 <h2 id="DOM0-级事件处理程序"><a href="#DOM0-级事件处理程序" class="headerlink" title="DOM0 级事件处理程序"></a>DOM0 级事件处理程序</h2><p>将一个函数赋值给一个事件处理程序属性。比如：</p>
 <figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;button <span class="attr">id="btn""&gt;Click</span> Me&lt;/button&gt;</div><div class="line"></div><div class="line">var <span class="attr">btn</span> = document.getElementById(<span class="string">"btn"</span>);</div><div class="line">btn.<span class="attr">onclick</span> = function() &#123;</div><div class="line">     console.log(<span class="string">"clicked"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>在 DOM0 级事件处理程序中，this 指向的是这个对象。</p>
-<p><strong>优点：</strong></p>
-<p>HTML 与 JavaScript 代码联系不紧密。</p>
-<p><strong>缺点：</strong></p>
-<p>不能给一个元素同时添加多个相同的事件处理程序，后添加的事件事件处理程序会覆盖之前的。</p>
+<p><strong>优点：</strong> HTML 与 JavaScript 代码联系不紧密。</p>
+<p><strong>缺点：</strong> 不能给一个元素同时添加多个相同的事件处理程序，后添加的事件事件处理程序会覆盖之前的。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="built_in">console</span>.log(<span class="string">"clicked1"</span>);</div><div class="line">&#125;</div><div class="line">btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="built_in">console</span>.log(<span class="string">"clicked2"</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">// clicked2</span></div></pre></td></tr></table></figure>
 <h2 id="DOM2级事件处理程序"><a href="#DOM2级事件处理程序" class="headerlink" title="DOM2级事件处理程序"></a>DOM2级事件处理程序</h2><p>DOM2 级事件处理程序用到的是 addEventListenter 方法。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">element.addEventListener(type,<span class="keyword">handler</span>,ture/<span class="literal">false</span>);</div></pre></td></tr></table></figure>
-<p>注意在 DOM2 级事件处理程序中，==type 是不带 on 的==，handler 是事件处理函数，true 表示在捕获阶段调用事件处理程序，false 表示在冒泡阶段调用。</p>
+<p>注意在 DOM2 级事件处理程序中，type 是不带 on 的，handler 是事件处理函数，true 表示在捕获阶段调用事件处理程序，false 表示在冒泡阶段调用。</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;button id=<span class="string">"btn"</span>"&gt;Click Me&lt;/button&gt;</div><div class="line"></div><div class="line"><span class="keyword">var</span> btn = document.getElementById(<span class="string">"btn"</span>);</div><div class="line"></div><div class="line">btn.addEventListener(<span class="string">"click"</span>,function() &#123;</div><div class="line">     console.<span class="built_in">log</span>(<span class="string">"clicked"</span>);</div><div class="line">&#125;,false);  <span class="comment">// 冒泡阶段调用</span></div></pre></td></tr></table></figure>
 <p>移除：通过 addEventListenter() 添加的事件处理程序，只能通过 removeEventListenter() 移除。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> handler = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="built_in">console</span>.log(<span class="string">"clicked"</span>);</div><div class="line">&#125;</div><div class="line">btn.addEventListener(<span class="string">"click"</span>,handler,<span class="literal">false</span>);  <span class="comment">// 添加</span></div><div class="line">btn.removeEventListener(<span class="string">"click"</span>,handler,<span class="literal">false</span>);  <span class="comment">// 移除</span></div></pre></td></tr></table></figure>
@@ -446,7 +444,7 @@
 </ol>
 <h2 id="IE事件处理程序"><a href="#IE事件处理程序" class="headerlink" title="IE事件处理程序"></a>IE事件处理程序</h2><p>与 DOM2 级事件处理程序类似，IE 提供了 attachEvent() 和 detachEvent() 方法。不同之处在于，IE 事件处理程序只在冒泡阶段触发。</p>
 <figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">element</span>.attachEvent(<span class="keyword">type</span>,handler);</div></pre></td></tr></table></figure>
-<p>注意 IE 事件处理程序，==type 要带 on==，handler 是事件处理函数。</p>
+<p>注意 IE 事件处理程序，type 要带 on，handler 是事件处理函数。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> handler = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="built_in">console</span>.log(<span class="string">"clicked"</span>);</div><div class="line">&#125;</div><div class="line">btn.attachEvent(<span class="string">"onclick"</span>,handler);  <span class="comment">// 添加</span></div><div class="line">btn.detachEvent(<span class="string">"onclick"</span>,handler);  <span class="comment">// 移除</span></div></pre></td></tr></table></figure>
 <p><strong>优点：</strong> </p>
 <ol>
