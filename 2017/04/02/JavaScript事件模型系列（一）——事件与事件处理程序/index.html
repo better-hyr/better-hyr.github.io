@@ -92,16 +92,16 @@
 为一个事件添加事件处理程序有四种方式。分别为：HTML、DOM0级、DOM2级、IE。
 事件处理程序HTML事件处理程序最开始学习 JavaScript 的时">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript事件模型系列（一）——事件与事件处理程序">
+<meta property="og:title" content="JavaScript事件模型系列（一）事件与事件处理程序">
 <meta property="og:url" content="http://yoursite.com/2017/04/02/JavaScript事件模型系列（一）——事件与事件处理程序/index.html">
 <meta property="og:site_name" content="Echo's Blog">
 <meta property="og:description" content="基本定义事件： 事件就是浏览器或者用户执行的某种动作，比如文档加载完毕（load）、鼠标点击（click）等等。 
 事件处理程序： 事件处理程序是响应事件的函数。事件处理程序可以看做是动作的结果，比如文档加载完毕或者点击鼠标之后会发生什么。
 为一个事件添加事件处理程序有四种方式。分别为：HTML、DOM0级、DOM2级、IE。
 事件处理程序HTML事件处理程序最开始学习 JavaScript 的时">
-<meta property="og:updated_time" content="2017-04-02T11:04:06.797Z">
+<meta property="og:updated_time" content="2017-04-02T11:12:07.915Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript事件模型系列（一）——事件与事件处理程序">
+<meta name="twitter:title" content="JavaScript事件模型系列（一）事件与事件处理程序">
 <meta name="twitter:description" content="基本定义事件： 事件就是浏览器或者用户执行的某种动作，比如文档加载完毕（load）、鼠标点击（click）等等。 
 事件处理程序： 事件处理程序是响应事件的函数。事件处理程序可以看做是动作的结果，比如文档加载完毕或者点击鼠标之后会发生什么。
 为一个事件添加事件处理程序有四种方式。分别为：HTML、DOM0级、DOM2级、IE。
@@ -139,7 +139,7 @@
 
 
 
-  <title> JavaScript事件模型系列（一）——事件与事件处理程序 | Echo's Blog </title>
+  <title> JavaScript事件模型系列（一）事件与事件处理程序 | Echo's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -299,7 +299,7 @@
             
             
               
-                JavaScript事件模型系列（一）——事件与事件处理程序
+                JavaScript事件模型系列（一）事件与事件处理程序
               
             
           </h1>
@@ -394,8 +394,8 @@
 <h1 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h1><h2 id="HTML事件处理程序"><a href="#HTML事件处理程序" class="headerlink" title="HTML事件处理程序"></a>HTML事件处理程序</h2><p>最开始学习 JavaScript 的时候，用到的就是 HTML 事件处理程序，就是直接在 HTML 代码中添加事件处理程序。</p>
 <p>比如直接在 HTML 标签内添加：</p>
 <figure class="highlight hsp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">button</span> id=<span class="string">"btn"</span> <span class="keyword">onclick</span>=<span class="string">"console.log('clicked');"</span>&gt;Click Me&lt;/<span class="keyword">button</span>&gt;</div></pre></td></tr></table></figure>
-<p>或添加到 <script> 标签中（外部 js 文件）：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn"</span> <span class="attr">onclick</span>=<span class="string">"show();"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></div><div class="line">     <span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>) </span>&#123;</div><div class="line">          <span class="built_in">console</span>.log(<span class="string">"clicked"</span>);</div><div class="line">     &#125;</div><div class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>或添加到 script 标签中（外部 js 文件）：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn"</span> <span class="attr">onclick</span>=<span class="string">"show();"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">     <span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>) </span>&#123;</div><div class="line">          <span class="built_in">console</span>.log(<span class="string">"clicked"</span>);</div><div class="line">     &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <p><strong>优点：</strong></p>
 <figure class="highlight hsp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">button</span> id=<span class="string">"btn"</span> <span class="keyword">onclick</span>=<span class="string">"console.log(event.type);"</span>&gt;Click Me&lt;/<span class="keyword">button</span>&gt;  <span class="comment">// click </span></div><div class="line"></div><div class="line">&lt;<span class="keyword">button</span> id=<span class="string">"btn"</span> <span class="keyword">onclick</span>=<span class="string">"console.log(this.id);"</span>&gt;Click Me&lt;/<span class="keyword">button</span>&gt;  <span class="comment">// btn</span></div></pre></td></tr></table></figure>
 <ol>
@@ -472,7 +472,7 @@
 <li><p>优缺点</p>
 </li>
 </ul>
-</script></p>
+</script></p></li></ol>
       
     </div>
 
@@ -802,7 +802,7 @@
         var disqus_config = function () {
           this.page.url = 'http://yoursite.com/2017/04/02/JavaScript事件模型系列（一）——事件与事件处理程序/';
           this.page.identifier = '2017/04/02/JavaScript事件模型系列（一）——事件与事件处理程序/';
-          this.page.title = 'JavaScript事件模型系列（一）——事件与事件处理程序';
+          this.page.title = 'JavaScript事件模型系列（一）事件与事件处理程序';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-better-hyr-github-io.disqus.com/embed.js';
