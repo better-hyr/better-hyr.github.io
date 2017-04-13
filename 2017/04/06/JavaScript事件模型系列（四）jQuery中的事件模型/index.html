@@ -1,0 +1,844 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前言jQuery中提供了四种事件绑定方式，分别是bind、live、delegate、on，对应的解除监听的函数分别是unbind、die、undelegate、off。
+先声明一个例子，各函数的用法将围绕这个例子。
+12345678910111213&amp;lt;ul id=&quot;uList&quot;&amp;gt;    &amp;lt;li id=&quot;list1&quot; class=&quot;item&quot;&amp;gt;列表元素1&amp;lt;/li&amp;gt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript事件模型系列（四）jQuery中的事件模型">
+<meta property="og:url" content="http://yoursite.com/2017/04/06/JavaScript事件模型系列（四）jQuery中的事件模型/index.html">
+<meta property="og:site_name" content="Echo's Blog">
+<meta property="og:description" content="前言jQuery中提供了四种事件绑定方式，分别是bind、live、delegate、on，对应的解除监听的函数分别是unbind、die、undelegate、off。
+先声明一个例子，各函数的用法将围绕这个例子。
+12345678910111213&amp;lt;ul id=&quot;uList&quot;&amp;gt;    &amp;lt;li id=&quot;list1&quot; class=&quot;item&quot;&amp;gt;列表元素1&amp;lt;/li&amp;gt">
+<meta property="og:image" content="http://i4.buimg.com/567571/5cdb68590f3c62fa.png">
+<meta property="og:image" content="http://i4.buimg.com/567571/5cdb68590f3c62fa.png">
+<meta property="og:image" content="http://i4.buimg.com/567571/5cdb68590f3c62fa.png">
+<meta property="og:updated_time" content="2017-04-13T08:29:19.896Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript事件模型系列（四）jQuery中的事件模型">
+<meta name="twitter:description" content="前言jQuery中提供了四种事件绑定方式，分别是bind、live、delegate、on，对应的解除监听的函数分别是unbind、die、undelegate、off。
+先声明一个例子，各函数的用法将围绕这个例子。
+12345678910111213&amp;lt;ul id=&quot;uList&quot;&amp;gt;    &amp;lt;li id=&quot;list1&quot; class=&quot;item&quot;&amp;gt;列表元素1&amp;lt;/li&amp;gt">
+<meta name="twitter:image" content="http://i4.buimg.com/567571/5cdb68590f3c62fa.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/06/JavaScript事件模型系列（四）jQuery中的事件模型/"/>
+
+
+
+
+
+  <title> JavaScript事件模型系列（四）jQuery中的事件模型 | Echo's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Echo's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">有一天我看了四十四次日落</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/06/JavaScript事件模型系列（四）jQuery中的事件模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Echo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Echo's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript事件模型系列（四）jQuery中的事件模型
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-06T08:00:00+08:00">
+                2017-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/06/JavaScript事件模型系列（四）jQuery中的事件模型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/04/06/JavaScript事件模型系列（四）jQuery中的事件模型/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>jQuery中提供了四种事件绑定方式，分别是bind、live、delegate、on，对应的解除监听的函数分别是unbind、die、undelegate、off。</p>
+<p>先声明一个例子，各函数的用法将围绕这个例子。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"uList"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"list1"</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>列表元素1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"list1"</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>列表元素2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"list1"</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>列表元素3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"list1"</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>列表元素4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"list1"</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>列表元素5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getText</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.innerHTML);</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><h2 id="on"><a href="#on" class="headerlink" title="on"></a>on</h2><figure class="highlight gauss"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(element).on(<span class="built_in">type</span>,[selector],[data],<span class="function"><span class="keyword">fn</span>)</span>;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>type：事件类型（不带 on，打引号）</p>
+</li>
+<li><p>selector：可选，触发事件的元素，若没有设置则默认为 element</p>
+</li>
+<li><p>data：可选，返回绑定当前事件处理程序时，传递的附加数据，通过 event.data 调用</p>
+</li>
+<li><p>fn：事件处理程序，可传入事件对象</p>
+</li>
+</ul>
+<p>data 参数的使用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 附加数据可以为任意类型</span></div><div class="line"><span class="keyword">var</span> userObj = &#123; <span class="attr">name</span>: <span class="string">"Echo"</span>, <span class="attr">age</span>: <span class="number">18</span> &#125;;</div><div class="line"></div><div class="line"><span class="comment">// 为所有p元素绑定click事件，并传入附加数据(user)</span></div><div class="line">$(<span class="string">"p"</span>).on( <span class="string">"click"</span>, userObj, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(event.data.name); <span class="comment">// Echo</span></div><div class="line">&#125; );</div></pre></td></tr></table></figure></p>
+<p>我们看到前有调用 on 的元素 element，后有函数参数 selector，那么二者之间的关系是什么呢，我们先不设置 selector，那么事件处理程序和事件都会默认绑定在 element 上。</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"<span class="subst">#uList</span>"</span>).<span class="literal">on</span>(<span class="string">"click"</span>,getText);</div></pre></td></tr></table></figure>
+<p><img src="http://i4.buimg.com/567571/5cdb68590f3c62fa.png" alt="on方法不带selector"></p>
+<p>再将 selector 设置为 li 时，</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#uList"</span>).<span class="keyword">on</span>(<span class="string">"click"</span>,<span class="string">"li"</span>,getText);</div><div class="line"><span class="comment">// 点击列表元素 1</span></div><div class="line"><span class="comment">// 列表元素1</span></div></pre></td></tr></table></figure>
+<p>这样看，还有点事件委托的意味，调用该方法的元素 element 绑定了事件处理程序，而参数中的 selector 才是触发事件的元素。</p>
+<h2 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h2><figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(element).<span class="keyword">bind</span>(<span class="keyword">type</span>,[<span class="keyword">data</span>],fn);</div></pre></td></tr></table></figure>
+<ul>
+<li><p>type：事件类型（不带 on，打引号）</p>
+</li>
+<li><p>data：可选，返回绑定当前事件处理程序时，传递的附加数据，通过 event.data 调用</p>
+</li>
+<li><p>fn：事件处理程序，可传入事件对象</p>
+</li>
+</ul>
+<p>在最开始学 jQuery 的时候，用的最多的就是 bind 方法。来看 bind 的源码：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function (types, <span class="keyword">data</span>, fn) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.on (types, <span class="literal">null</span>, <span class="keyword">data</span>, fn);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以看到 bind 是调用了 on 方法，并设置 selector 属性为 null。<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$(</span><span class="string">"#uList"</span>).bind(<span class="string">"click"</span>,getText);</div></pre></td></tr></table></figure></p>
+<p><img src="http://i4.buimg.com/567571/5cdb68590f3c62fa.png" alt="bind方法"><br><figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">$</span>(<span class="string">"#list1"</span>).bind(<span class="string">"click"</span>,getText);</div><div class="line"><span class="comment">// 点击列表元素 1</span></div><div class="line"><span class="comment">// 列表元素1</span></div></pre></td></tr></table></figure></p>
+<h2 id="live"><a href="#live" class="headerlink" title="live"></a>live</h2><figure class="highlight gauss"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(element).live(<span class="built_in">type</span>,[data],<span class="function"><span class="keyword">fn</span>)</span>;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>type：事件类型（不带 on，打引号）</p>
+</li>
+<li><p>data：可选，返回绑定当前事件处理程序时，传递的附加数据，通过 event.data 调用</p>
+</li>
+<li><p>fn：事件处理程序，可传入事件对象</p>
+</li>
+</ul>
+<p>live 源码：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function (types, <span class="keyword">data</span>, fn) &#123;</div><div class="line">    jQuery (<span class="keyword">this</span>.context).on(types, <span class="keyword">this</span>.selector, <span class="keyword">data</span>, fn);</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>live 方法其实也是调用了 on 方法，但不是绑定到调用的元素上，而是绑定到 this.context，那 context 又是什么呢，我个人认为就是该元素的上下文，在可以使用 live 方法的 jQuery 版本下：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$(</span><span class="string">"#uList"</span>).context;  <span class="regexp">//</span> <span class="comment">#document</span></div><div class="line"><span class="string">"#list1"</span>).context;  <span class="regexp">//</span> <span class="comment">#document</span></div></pre></td></tr></table></figure>
+<p>而在 jQuery1.7 以上版本：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$(</span><span class="string">"#uList"</span>).context;  <span class="regexp">//</span> undefined</div><div class="line"><span class="variable">$(</span><span class="string">"#list1"</span>).context;  <span class="regexp">//</span> undefined</div></pre></td></tr></table></figure>
+<p>因此这就导致了一个弊端，将所有事件都委托到根节点上，根节点负担太大，并且在 DOM 节点较为复杂时会有意料之外的结果，所以 jQuery1.7 之后就废弃了 live 方法。</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$(</span><span class="string">"#uList"</span>).live(<span class="string">"click"</span>,getText);</div></pre></td></tr></table></figure>
+<p><img src="http://i4.buimg.com/567571/5cdb68590f3c62fa.png" alt="live"></p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#list1"</span>).<span class="keyword">on</span>(<span class="string">"click"</span>,getText);</div><div class="line"><span class="comment">// 点击列表元素 1</span></div><div class="line"><span class="comment">// 列表元素1</span></div></pre></td></tr></table></figure>
+<h2 id="delegate"><a href="#delegate" class="headerlink" title="delegate"></a>delegate</h2><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(element).<span class="keyword">delegate</span>(selector,<span class="class"><span class="keyword">type</span>,[<span class="title">data</span>],<span class="title">fn</span>);</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>selector：触发事件的元素</p>
+</li>
+<li><p>type：事件类型（不带 on，打引号）</p>
+</li>
+</ul>
+<ul>
+<li><p>data：可选，返回绑定当前事件处理程序时，传递的附加数据，通过 event.data 调用</p>
+</li>
+<li><p>fn：事件处理程序，可传入事件对象</p>
+</li>
+</ul>
+<p>对于一下 on 方法：</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(element).on(<span class="built_in">type</span>,[selector],[data],<span class="function"><span class="keyword">fn</span>)</span>;</div></pre></td></tr></table></figure>
+<p>再看 delegate 的源码：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">function</span>(<span class="keyword">selector, </span>types, <span class="meta">data</span>, <span class="meta">fn</span>) &#123;</div><div class="line">        return this.on( types, <span class="keyword">selector, </span><span class="meta">data</span>, <span class="meta">fn</span> )<span class="comment">;</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>与 on 方法的唯一区别就是不能省略 selector 参数，其实从这个函数名就可以看的出来：delegate（委托），调用 delegate 方法的 element 就是被委托的元素，绑定了事件处理程序，而 selector 是触发事件的元素。 </p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#uList"</span>).<span class="keyword">delegate</span>(<span class="string">"li"</span>,<span class="string">"click"</span>,getText);</div><div class="line"><span class="comment">// 点击列表元素 1</span></div><div class="line"><span class="comment">// 列表元素1</span></div></pre></td></tr></table></figure>
+<h1 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h1><p>官方推荐尽量使用 on 方法，其他三种方法也是调用了 on 方法。</p>
+<p>bind 方法：优点是清晰，直接，适合于将事件和事件处理程序直接绑定在单独的元素上，而缺点就是，不能将事件处理程序绑定到页面上的其他元素（也就是不能进行事件代理）。</p>
+<p>live 方法：已经被弃用了就不多说了，将所有事件都委托到根节点上，根节点负担太大，并且在 DOM 节点较为复杂时会有意料之外的结果。</p>
+<p>delegate 方法：相比于 live 方法而言，可以指定代理元素，速度比 live 方法要快，但相比与 bind 方法，还是要慢的，因为要冒泡到代理元素上再执行事件处理程序。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/05/JavaScript事件模型系列（三）事件对象/" rel="next" title="JavaScript事件模型系列（三）事件对象">
+                <i class="fa fa-chevron-left"></i> JavaScript事件模型系列（三）事件对象
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Echo" />
+          <p class="site-author-name" itemprop="name">Echo</p>
+           
+              <p class="site-description motion-element" itemprop="description">前端个人博客</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原理"><span class="nav-number">2.</span> <span class="nav-text">原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#on"><span class="nav-number">2.1.</span> <span class="nav-text">on</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bind"><span class="nav-number">2.2.</span> <span class="nav-text">bind</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#live"><span class="nav-number">2.3.</span> <span class="nav-text">live</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#delegate"><span class="nav-number">2.4.</span> <span class="nav-text">delegate</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#比较"><span class="nav-number">3.</span> <span class="nav-text">比较</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Echo</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://https-better-hyr-github-io.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/04/06/JavaScript事件模型系列（四）jQuery中的事件模型/';
+          this.page.identifier = '2017/04/06/JavaScript事件模型系列（四）jQuery中的事件模型/';
+          this.page.title = 'JavaScript事件模型系列（四）jQuery中的事件模型';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-better-hyr-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  <a href="https://github.com/better-hyr"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+</body>
+</html>
