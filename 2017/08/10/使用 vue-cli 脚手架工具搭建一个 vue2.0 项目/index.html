@@ -104,7 +104,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3912756-ef0efbea86de6957.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3912756-83a3f830a5c728bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3912756-2928686dc1b9d76c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-08-10T14:58:03.337Z">
+<meta property="og:updated_time" content="2017-08-10T15:15:41.177Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 vue-cli 脚手架工具搭建一个 vue2.0 项目">
 <meta name="twitter:description" content="开始用 vue 框架的时候，我只会
@@ -346,17 +346,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/10/使用 vue-cli 脚手架工具搭建一个 vue2.0 项目/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/10/使用 vue-cli 脚手架工具搭建一个 vue2.0 项目/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -561,8 +550,8 @@ export default {
   ...
 &lt;/style&gt;
 </code></pre><p>我们发现在 App.vue 中引入并使用了 hello 组件，至此还没发现任何与看到的页面相关的内容，怀着终于走到终点的心情打开了最后一个文件，惊觉原来如此，所有的东西都在这啊。</p>
-<p>总而言之，我们在页面上看到的内容（除图片外）都是在 Hello.vue 这个文件定义的，作为一个可以重复使用的组件，被引入了 App.vue 这个实例中，App.vue 这个组件可以看做整个项目的主实例，而 App 这个组件又是通过 main.js 初始化并挂载到 index.html 中渲染的，至于说为什么没有 <script> 这样显式关联的语句，就是 webpack 的功劳了。</p>
-</script></p>
+<p>总而言之，我们在页面上看到的内容（除图片外）都是在 Hello.vue 这个文件定义的，作为一个可以重复使用的组件，被引入了 App.vue 这个实例中，App.vue 这个组件可以看做整个项目的主实例，而 App 这个组件又是通过 main.js 初始化并挂载到 index.html 中渲染的，至于说为什么没有 script 这样显式关联的语句，就是 webpack 的功劳了。</p>
+
       
     </div>
 
@@ -632,12 +621,7 @@ export default {
           
   <div class="comments" id="comments">
     
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDExMS82NjY2"></div>
     
   </div>
 
@@ -887,26 +871,6 @@ export default {
 
   
 
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://https-better-hyr-github-io.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/08/10/使用 vue-cli 脚手架工具搭建一个 vue2.0 项目/';
-          this.page.identifier = '2017/08/10/使用 vue-cli 脚手架工具搭建一个 vue2.0 项目/';
-          this.page.title = '使用 vue-cli 脚手架工具搭建一个 vue2.0 项目';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://https-better-hyr-github-io.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
 
   
 
